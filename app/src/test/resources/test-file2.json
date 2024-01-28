@@ -1,0 +1,13 @@
+{
+  "glossary": "example dictionary",
+  "title": "D",
+  "GlossList": "GlossEntry",
+  "ID": 40,
+  "SortAs": "SGML",
+  "GlossTerm": "Standard Generalized Markup Language",
+  "Acronym": "SGML",
+  "Abbrev": "ISO 8856:1994",
+  "GlossDef": "A meta-markup language, used to create markup languages such as DocsFiles.",
+  "GlossSeeAlso": ["GML", "XML"],
+  "GlossSee": "markup"
+}
