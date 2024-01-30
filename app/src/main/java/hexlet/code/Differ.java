@@ -1,11 +1,5 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Map;
@@ -31,12 +25,6 @@ public class Differ {
                     }
                 }).collect(Collectors.joining(""));
         return "{\n" + stylishFormat + "}";
-    }
-    public static Map<String, Object> getData(final Path content) throws IOException {
-        return parse(String.valueOf(content));
-    }
-    private static Map<String, Object> parse(final String pathToFile) throws IOException {
-        return new ObjectMapper().readValue(new File(pathToFile), new TypeReference<>() { });
     }
     private static String getMappedObject(String sign, String key, Object value) {
         return "  " + sign + key + ": " + value + "\n";
