@@ -69,31 +69,45 @@ jar {
     }
 }
 
-test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
-}
+//test {
+//    finalizedBy jacocoTestReport // report is always generated after tests run
+//}
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
-
-testlogger {
-    theme 'mocha' // or 'standard'
-    showExceptions true
-    showStackTraces true
-    showFullStackTraces false
-    showCauses true
-    slowThreshold 2000
-    showSummary true
-    showSimpleNames false
-    showPassed true
-    showSkipped true
-    showFailed true
-    showOnlySlow false
-    showStandardStreams false
-    showPassedStandardStreams true
-    showSkippedStandardStreams true
-    showFailedStandardStreams true
-    logLevel 'lifecycle'
+tasks.test {
+    useJUnitPlatform()
+    testlogger {
+        theme 'mocha' // or 'standard'
+        showExceptions true
+        showStackTraces true
+        showFullStackTraces false
+        showCauses true
+        slowThreshold 2000
+        showSummary true
+        showSimpleNames false
+        showPassed true
+        showSkipped true
+        showFailed true
+        showOnlySlow false
+        showStandardStreams false
+        showPassedStandardStreams true
+        showSkippedStandardStreams true
+        showFailedStandardStreams true
+        logLevel 'lifecycle'
+    }
+//    // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
+//    testLogging {
+//        exceptionFormat = TestExceptionFormat.FULL
+//        events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+//        // showStackTraces = true
+//        // showCauses = true
+//        showStandardStreams = true
+//    }
 }
+
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
+
+
 
 
