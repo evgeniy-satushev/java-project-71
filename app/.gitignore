@@ -1,5 +1,7 @@
 .gradle
 build/
+!build/reports/jacoco
+!build/reports/checkstyle
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
