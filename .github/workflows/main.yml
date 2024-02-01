@@ -23,7 +23,7 @@ jobs:
           gradle-version: 8.3
           arguments: build
           build-root-directory: app
-#      - run: ./gradlew checkstyleMain
+      - run: ./gradlew checkstyleMain
 #      - run: ./gradlew checkstyleTest
 #      - run: ./gradlew test
       - name: Publish code coverage
