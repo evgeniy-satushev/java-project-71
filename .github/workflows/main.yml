@@ -17,7 +17,7 @@ jobs:
           java-version: '20'
           distribution: 'temurin'
       - name: Build with Gradle
-        uses: gradle/gradle-buid-action@v2
+        uses: gradle/gradle-build-action@v2
 #        uses: gradle/gradle-build-action@v3.0.0
 #        uses: gradle/actions/setup-gradle@v3
         with:
