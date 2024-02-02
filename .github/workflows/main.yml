@@ -20,10 +20,10 @@ jobs:
         uses: gradle/gradle-build-action@v3.0.0
 #        uses: gradle/actions/setup-gradle@v3
 
-        with:
-          gradle-version: 8.3
-          arguments: build
-          build-root-directory: app
+#        with:
+#          gradle-version: 8.3
+#          arguments: build
+#          build-root-directory: app
 #      - run: ./gradlew checkstyleMain
 #      - run: ./gradlew checkstyleTest
 #      - run: ./gradlew test
