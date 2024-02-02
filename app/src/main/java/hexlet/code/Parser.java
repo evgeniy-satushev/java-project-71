@@ -15,14 +15,12 @@ public class Parser {
         return parse(String.valueOf(content));
     }
     private static Map<String, Object> parse(final String pathToFile) throws IOException {
-        Map<String, Object> parsedData;
         if (pathToFile.endsWith(".yml")) {
-            parsedData = new ObjectMapper(new YAMLFactory())
+            return new TreeMap<>(new ObjectMapper(new YAMLFactory())
                     .findAndRegisterModules()
-                    .readValue(new File(pathToFile), new TypeReference<>() { });
-            return new TreeMap<>(parsedData);
+                    .<Map<String, Object>>readValue(new File(pathToFile), new TypeReference<>() { }));
         }
-        parsedData = new ObjectMapper().readValue(new File(pathToFile), new TypeReference<>() { });
-        return new TreeMap<>(parsedData);
+        return new TreeMap<>(new ObjectMapper()
+                .<Map<String, Object>>readValue(new File(pathToFile), new TypeReference<>() { }));
     }
 }

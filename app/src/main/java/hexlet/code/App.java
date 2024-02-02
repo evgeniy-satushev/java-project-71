@@ -17,7 +17,7 @@ public class App implements Callable<Integer> {
     String filepath1;
     @Parameters(index = "1", description = "path to second file")
     String filepath2;
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
     String format;
 
     @Override
@@ -25,7 +25,7 @@ public class App implements Callable<Integer> {
         try {
             Path firstPath = Paths.get(filepath1).toAbsolutePath().normalize();
             Path seconfPath = Paths.get(filepath2).toAbsolutePath().normalize();
-            String diffBetweenJson = Differ.generate(Parser.getData(firstPath), Parser.getData(seconfPath));
+            String diffBetweenJson = Differ.generate(format, Parser.getData(firstPath), Parser.getData(seconfPath));
             System.out.println(diffBetweenJson);
         } catch (IOException e) {
             System.out.println("THE FILE DOES NOT EXIST IN THE SPECIFIED DIRECTORY \n" + e);

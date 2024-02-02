@@ -19,13 +19,13 @@ run-dist:
 	./build/install/app/bin/app -h
 
 run:
-	./gradlew run --args="./src/main/resources/file1.json ./src/main/resources/file2.json"
+	./gradlew run --args="-f plain ./src/test/resources/big-file1.json ./src/test/resources/big-file2.json"
 
 test:
 	./gradlew test
 
 report:
-	./gradlew jacocoTestReport
+	./gradlew cd app && jacocoTestReport
 
 lint:
 	./gradlew checkstyleMain
