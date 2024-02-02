@@ -50,6 +50,7 @@ public class PlainFormat {
                     formatter.format("Property '%s' was updated. From %s to %s\n", key, complexVal1, complexVal2);
                 }
             }
+            default -> System.out.println("?");
         }
 //        formatter.format("Property '%s' was updated. From %s to '%s'\n", key, complexValue1, complexValue2);
         return formatter.toString();
