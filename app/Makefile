@@ -25,7 +25,7 @@ test:
 	./gradlew test
 
 report:
-	./gradlew cd app && jacocoTestReport
+	cd app && ./gradlew jacocoTestReport
 
 lint:
 	./gradlew checkstyleMain
