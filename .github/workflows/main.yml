@@ -18,12 +18,15 @@ jobs:
           distribution: 'temurin'
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v3.0.0
+      - run: make test
+      - run: make lint
+      - run: make run
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
           # Set CC_TEST_REPORTER_ID as secret of your repo
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-          JACOCO_SOURCE_PATH: ${{github.workspace}}app/src/main/java
+          JACOCO_SOURCE_PATH: ${{github.workspace}}app/src/main
         with:
           # The report file must be there, otherwise Code Climate won't find it
           coverageCommand: make report

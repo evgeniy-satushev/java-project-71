@@ -7,7 +7,7 @@ clean:
 	./gradlew clean
 
 build:
-	./gradlew clean build
+	cd app && ./gradlew clean build
 
 install:
 	./gradlew clean install
@@ -18,25 +18,26 @@ installDist:
 run-dist:
 	./build/install/app/bin/app -h
 
+#run:
+#	cd app && ./gradlew run --args="-f plain ./src/test/resources/big-file1.json ./src/test/resources/big-file2.json"
 run:
-	cd app && ./gradlew run --args="-f plain ./src/test/resources/big-file1.json ./src/test/resources/big-file2.json"
-
+	cd app && ./gradlew run --args="-h"
 test:
 	cd app && ./gradlew test
 
 report:
-	cd app && ./gradlew test jacocoTestReport
+	cd app && ./gradlew jacocoTestReport
 
 lint:
-	./gradlew checkstyleMain
+	cd app && ./gradlew checkstyleMain checkstyleTest
 
-lintTest:
-	./gradlew checkstyleTest
+#lintTest:
+#	cd app && ./gradlew checkstyleTest
 
 check-deps:
 	./gradlew dependencyUpdates -Drevision=release
 
 
-build-run: build run
+build-run: build run lint
 
 .PHONY: build
