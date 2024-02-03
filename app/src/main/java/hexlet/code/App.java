@@ -22,15 +22,16 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() {
+        String diffBetweenFiles;
         try {
             Path firstPath = Paths.get(filepath1).toAbsolutePath().normalize();
             Path seconfPath = Paths.get(filepath2).toAbsolutePath().normalize();
-            String diffBetweenJson = Differ.generate(format, Parser.getData(firstPath), Parser.getData(seconfPath));
-            System.out.println(diffBetweenJson);
+            diffBetweenFiles = Differ.generate(format, Parser.getData(firstPath), Parser.getData(seconfPath));
         } catch (IOException e) {
             System.out.println("THE FILE DOES NOT EXIST IN THE SPECIFIED DIRECTORY \n" + e);
             return 1;
         }
+        System.out.println(diffBetweenFiles);
         return 0;
     }
     public static void main(String[] args) {

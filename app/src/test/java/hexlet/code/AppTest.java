@@ -23,7 +23,8 @@ public class AppTest {
 //    Path nonExistedFilepath = Paths.get("./src/test/resources/non-existed.json");
     @Test
     void generateTest() {
-        String formatStylish = "default";
+        String formatStylish = "stylish";
+        String formatPlain = "plain";
         String actual = """
                 {
                   - follow: false
