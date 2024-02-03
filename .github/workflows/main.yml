@@ -10,14 +10,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Java JDK
         uses: actions/setup-java@v4.0.0
-
         with:
           java-version: '20'
           distribution: 'temurin'
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v3.0.0
+        with:
+          gradle-version: 8.3
+      - run: make test
+        with:
+          arguments: build
+          build-root-directory: app
       - run: make test
       - run: make lint
       - run: make run
@@ -26,7 +33,7 @@ jobs:
         env:
           # Set CC_TEST_REPORTER_ID as secret of your repo
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-#          JACOCO_SOURCE_PATH: ${{github.workspace}}app/src/main
+          JACOCO_SOURCE_PATH: ${{github.workspace}}app/src/main
         with:
           # The report file must be there, otherwise Code Climate won't find it
           coverageCommand: make report
