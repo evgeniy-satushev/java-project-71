@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hexlet.code.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-05T13:20:07" hostname="raider-ge78hx" time="0.309">
+  <properties/>
+  <testcase name="mainTest()" classname="hexlet.code.AppTest" time="0.309"/>
+  <system-out><![CDATA[THE FILE DOES NOT EXIST IN THE SPECIFIED DIRECTORY
+java.io.FileNotFoundException: /home/evgeni/java-project-71/app/file1.json (Нет такого файла или каталога)
+1.0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

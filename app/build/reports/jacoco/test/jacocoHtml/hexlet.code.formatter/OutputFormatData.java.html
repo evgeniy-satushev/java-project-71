@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OutputFormatData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">hexlet.code.formatter</a> &gt; <span class="el_source">OutputFormatData.java</span></div><h1>OutputFormatData.java</h1><pre class="source lang-java linenums">package hexlet.code.formatter;
+
+
+import hexlet.code.util.Utils;
+
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+<span class="nc" id="L12">public class OutputFormatData {</span>
+    public static String generateDiff(String format, Map&lt;String, Object&gt; firstFile, Map&lt;String, Object&gt; secondFile) {
+<span class="fc" id="L14">        Set&lt;String&gt; keys = new HashSet&lt;&gt;(firstFile.keySet());</span>
+<span class="fc" id="L15">        keys.addAll(secondFile.keySet());</span>
+<span class="fc" id="L16">        return keys.stream()</span>
+<span class="fc" id="L17">                .sorted(Comparator.naturalOrder())</span>
+<span class="fc" id="L18">                .map(key -&gt; {</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">                    if (!firstFile.containsKey(key)) {</span>
+<span class="fc" id="L20">                        return OutputFormatData.getDiffData(format, &quot;added&quot;, key, secondFile.get(key));</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">                    } else if (!secondFile.containsKey(key)) {</span>
+<span class="fc" id="L22">                        return OutputFormatData.getDiffData(format, &quot;removed&quot;, key, firstFile.get(key));</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">                    } else if (Utils.isNullValue(secondFile.get(key), firstFile.get(key))) {</span>
+<span class="fc" id="L24">                        return OutputFormatData.getDiffData(format, &quot;unchanged&quot;, key, secondFile.get(key));</span>
+                    } else {
+<span class="fc" id="L26">                        return OutputFormatData.getDiffData(format, &quot;updated&quot;, key,</span>
+<span class="fc" id="L27">                                firstFile.get(key), secondFile.get(key));</span>
+                    }
+<span class="fc" id="L29">                }).collect(Collectors.joining(&quot;&quot;));</span>
+    }
+    private static String getDiffData(String format, String sign, String key, Object value1, Object value2) {
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (format.equalsIgnoreCase(&quot;plain&quot;)) {</span>
+<span class="fc" id="L33">            return PlainFormat.getPlainFormatData(sign, key, value1, value2);</span>
+        } else {
+<span class="fc" id="L35">            return StylishFormat.getStylishFormatData(&quot;removed&quot;, key, value1)</span>
+<span class="fc" id="L36">                    + StylishFormat.getStylishFormatData(&quot;added&quot;, key, value2);</span>
+        }
+    }
+    private static String getDiffData(String format, String sign, String key, Object value1) {
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if (sign.equals(&quot;updated&quot;)) {</span>
+<span class="nc" id="L41">            return getDiffData(format, sign, key, value1, &quot;&quot;);</span>
+        }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (format.equalsIgnoreCase(&quot;plain&quot;)) {</span>
+<span class="fc" id="L44">            return PlainFormat.getPlainFormatData(sign, key, value1, &quot;&quot;);</span>
+        } else {
+<span class="fc" id="L46">            return StylishFormat.getStylishFormatData(sign, key, value1);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

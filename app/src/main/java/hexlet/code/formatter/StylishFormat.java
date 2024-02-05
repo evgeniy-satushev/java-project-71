@@ -4,7 +4,7 @@ import java.util.Formatter;
 import java.util.Map;
 
 public class StylishFormat {
-    static String getStylishFormatData(String sign, String key, Object value) {
+    public static String getStylishFormatData(String sign, String key, Object value) {
         Map<String, String> signOfDifference = Map.of(
                 "added", "+",
                 "removed", "-",

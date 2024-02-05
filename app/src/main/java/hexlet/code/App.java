@@ -28,13 +28,20 @@ public class App implements Callable<Integer> {
             Path seconfPath = Paths.get(filepath2).toAbsolutePath().normalize();
             diffBetweenFiles = Differ.generate(format, Parser.getData(firstPath), Parser.getData(seconfPath));
         } catch (IOException e) {
-            System.out.println("THE FILE DOES NOT EXIST IN THE SPECIFIED DIRECTORY \n" + e);
+            System.out.println("THE FILE DOES NOT EXIST IN THE SPECIFIED DIRECTORY\n" + e);
             return 1;
         }
         System.out.println(diffBetweenFiles);
         return 0;
     }
+
     public static void main(String[] args) {
         System.exit(new CommandLine(new App()).execute(args));
     }
+
+//    private static boolean checkFilesFormat(String filepath1, String filepath2) {
+//        String formatFile1 = filepath1.substring(filepath1.length() - 4);
+//        String formatFile2 = filepath2.substring(filepath1.length() - 4);
+//        return formatFile1.equals(formatFile2);
+//    }
 }
