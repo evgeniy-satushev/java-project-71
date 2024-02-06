@@ -27,7 +27,7 @@ public class App implements Callable<Integer> {
             System.out.println("THE FILE DOES NOT EXIST IN THE SPECIFIED DIRECTORY\n" + e);
             return 1;
         }
-        System.out.println(diffBetweenFiles);
+        System.out.print(diffBetweenFiles);
         return 0;
     }
 
