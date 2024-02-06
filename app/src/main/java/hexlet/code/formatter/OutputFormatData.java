@@ -17,25 +17,25 @@ public class OutputFormatData {
             return generateDiff(format, firstFile, secondFile);
         }
     }
-    public static String generateDiff(String format, Map<String, Object> firstFile, Map<String, Object> secondFile) {
+    private static String generateDiff(String format, Map<String, Object> firstFile, Map<String, Object> secondFile) {
         Set<String> keys = new HashSet<>(firstFile.keySet());
         keys.addAll(secondFile.keySet());
         return keys.stream()
                 .sorted(Comparator.naturalOrder())
                 .map(key -> {
                     if (!firstFile.containsKey(key)) {
-                        return OutputFormatData.getDiffData(format, "added", key, secondFile.get(key));
+                        return OutputFormatData.getDiffLineData(format, "added", key, secondFile.get(key));
                     } else if (!secondFile.containsKey(key)) {
-                        return OutputFormatData.getDiffData(format, "removed", key, firstFile.get(key));
+                        return OutputFormatData.getDiffLineData(format, "removed", key, firstFile.get(key));
                     } else if (Utils.isNullValue(secondFile.get(key), firstFile.get(key))) {
-                        return OutputFormatData.getDiffData(format, "unchanged", key, secondFile.get(key));
+                        return OutputFormatData.getDiffLineData(format, "unchanged", key, secondFile.get(key));
                     } else {
-                        return OutputFormatData.getDiffData(format, "updated", key,
+                        return OutputFormatData.getDiffLineData(format, "updated", key,
                                 firstFile.get(key), secondFile.get(key));
                     }
                 }).collect(Collectors.joining(""));
     }
-    private static String getDiffData(String format, String sign, String key, Object value1, Object value2) {
+    private static String getDiffLineData(String format, String sign, String key, Object value1, Object value2) {
         if (format.equalsIgnoreCase("plain")) {
             return PlainFormat.getPlainFormatData(sign, key, value1, value2);
         } else {
@@ -43,9 +43,9 @@ public class OutputFormatData {
                     + StylishFormat.getStylishFormatData("added", key, value2);
         }
     }
-    private static String getDiffData(String format, String sign, String key, Object value1) {
+    private static String getDiffLineData(String format, String sign, String key, Object value1) {
         if (sign.equals("updated")) {
-            return getDiffData(format, sign, key, value1, "");
+            return getDiffLineData(format, sign, key, value1, "");
         }
         if (format.equalsIgnoreCase("plain")) {
             return PlainFormat.getPlainFormatData(sign, key, value1, "");

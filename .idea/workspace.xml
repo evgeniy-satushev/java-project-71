@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4da9afa1-cf5a-47fb-84da-75adf44570c4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hexlet/code/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Differ.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Differ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/formatter/OutputFormatData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hexlet/code/formatter/OutputFormatData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/hexlet/code/DifferTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/hexlet/code/DifferTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
