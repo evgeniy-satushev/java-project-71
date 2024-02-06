@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import picocli.CommandLine;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class App implements Callable<Integer> {
     @Parameters(index = "1", description = "path to second file")
     String filepath2;
     @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
-    String format;
+    static String format;
 
     @Override
     public Integer call() {
@@ -27,6 +28,9 @@ public class App implements Callable<Integer> {
             Path firstPath = Paths.get(filepath1).toAbsolutePath().normalize();
             Path seconfPath = Paths.get(filepath2).toAbsolutePath().normalize();
             diffBetweenFiles = Differ.generate(format, Parser.getData(firstPath), Parser.getData(seconfPath));
+        } catch (JsonProcessingException jpe) {
+            System.out.println(jpe.getLocation());
+            return 1;
         } catch (IOException e) {
             System.out.println("THE FILE DOES NOT EXIST IN THE SPECIFIED DIRECTORY\n" + e);
             return 1;
@@ -38,7 +42,6 @@ public class App implements Callable<Integer> {
     public static void main(String[] args) {
         System.exit(new CommandLine(new App()).execute(args));
     }
-
 //    private static boolean checkFilesFormat(String filepath1, String filepath2) {
 //        String formatFile1 = filepath1.substring(filepath1.length() - 4);
 //        String formatFile2 = filepath2.substring(filepath1.length() - 4);

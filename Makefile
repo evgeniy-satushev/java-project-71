@@ -19,7 +19,7 @@ run-dist:
 	./build/install/app/bin/app -h
 
 #run:
-#	cd app && ./gradlew run --args="-f plain ./src/test/resources/test-file1.json ./src/test/resources/test-file2.json"
+#	cd app && ./gradlew run --args="-f json ./src/test/resources/big-file1.json ./src/test/resources/big-file2.json"
 
 run:
 	cd app && ./gradlew run --args="-h"

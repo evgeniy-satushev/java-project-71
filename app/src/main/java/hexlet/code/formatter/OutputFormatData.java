@@ -10,6 +10,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OutputFormatData {
+    public static String getSimplyFormat(String format, Map<String, Object> firstFile, Map<String, Object> secondFile) {
+        if (format.equalsIgnoreCase("stylish")) {
+            return "{\n" + generateDiff(format, firstFile, secondFile) + "}";
+        } else {
+            return generateDiff(format, firstFile, secondFile);
+        }
+    }
     public static String generateDiff(String format, Map<String, Object> firstFile, Map<String, Object> secondFile) {
         Set<String> keys = new HashSet<>(firstFile.keySet());
         keys.addAll(secondFile.keySet());
