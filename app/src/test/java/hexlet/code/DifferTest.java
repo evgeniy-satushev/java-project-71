@@ -42,11 +42,11 @@ public class DifferTest {
         String expected4 = "";
         String expected5 = "";
         try {
-            expected1 = Differ.generate(formatStylish, Parser.getData(filepathYaml1), Parser.getData(filepathYaml2));
-            expected2 = Differ.generate(formatStylish, Parser.getData(filepathJson1), Parser.getData(filepathJson2));
-            expected3 = Differ.generate(formatStylish, Parser.getData(emptyFile), Parser.getData(emptyFile));
-            expected4 = Differ.generate(formatPlain, Parser.getData(filepathJson1), Parser.getData(filepathJson2));
-            expected5 = Differ.generate(formatPlain, Parser.getData(filepathYaml1), Parser.getData(filepathYaml2));
+            expected1 = Differ.generate(Parser.getData(filepathYaml1), Parser.getData(filepathYaml2), formatStylish);
+            expected2 = Differ.generate(Parser.getData(filepathJson1), Parser.getData(filepathJson2), formatStylish);
+            expected3 = Differ.generate(Parser.getData(emptyFile), Parser.getData(emptyFile), formatStylish);
+            expected4 = Differ.generate(Parser.getData(filepathJson1), Parser.getData(filepathJson2), formatPlain);
+            expected5 = Differ.generate(Parser.getData(filepathYaml1), Parser.getData(filepathYaml2), formatPlain);
         } catch (IOException e) {
             System.out.println("INCORRECT PATH TO FILE");
         }

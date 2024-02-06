@@ -27,7 +27,7 @@ public class App implements Callable<Integer> {
         try {
             Path firstPath = Paths.get(filepath1).toAbsolutePath().normalize();
             Path seconfPath = Paths.get(filepath2).toAbsolutePath().normalize();
-            diffBetweenFiles = Differ.generate(format, Parser.getData(firstPath), Parser.getData(seconfPath));
+            diffBetweenFiles = Differ.generate(Parser.getData(firstPath), Parser.getData(seconfPath), format);
         } catch (JsonProcessingException jpe) {
             System.out.println(jpe.getLocation());
             return 1;
